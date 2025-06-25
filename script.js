@@ -45,6 +45,32 @@ document.addEventListener('DOMContentLoaded', function() {
     displayMenuItems('all');
     setupEventListeners();
     setupSmoothScrolling();
+    const cone = document.querySelector('.ice-cream-animation');
+    if (cone) {
+        const scoops = cone.querySelectorAll('.scoop');
+        scoops.forEach((scoop, idx) => {
+            // Click to pop off and reappear
+            scoop.addEventListener('click', function() {
+                scoop.style.transition = 'transform 0.5s cubic-bezier(.68,-0.55,.27,1.55), opacity 0.5s';
+                scoop.style.transform = 'translateY(-120px) scale(1.3) rotate(-20deg)';
+                scoop.style.opacity = '0';
+                setTimeout(() => {
+                    scoop.style.transform = '';
+                    scoop.style.opacity = '1';
+                }, 700);
+            });
+            // Fun hover effect
+            scoop.addEventListener('mouseenter', function() {
+                scoop.style.transition = 'transform 0.2s';
+                scoop.style.transform = 'scale(1.08)';
+                scoop.style.zIndex = 10;
+            });
+            scoop.addEventListener('mouseleave', function() {
+                scoop.style.transform = '';
+                scoop.style.zIndex = 2 + (2-idx); // restore stacking order
+            });
+        });
+    }
 });
 
 // Display menu items based on filter
