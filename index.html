@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoops By Surgel - Premium Ice Cream</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-ice-cream"></i>
+                <span>Scoops By Surgel</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to Scoops By Surgel</h1>
+            <p class="hero-subtitle">Handcrafted ice cream made with love and the finest ingredients</p>
+            <button class="cta-button" onclick="scrollToMenu()">Explore Our Menu</button>
+        </div>
+        <div class="hero-image">
+            <div class="ice-cream-animation">
+                <div class="scoop scoop-1"></div>
+                <div class="scoop scoop-2"></div>
+                <div class="scoop scoop-3"></div>
+                <div class="cone"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Our Delicious Menu</h2>
+            <div class="menu-filters">
+                <button class="filter-btn active" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'});">Ice Cream Flavors</button>
+                <button class="filter-btn" onclick="document.getElementById('pastries').scrollIntoView({behavior: 'smooth'});">Frozen Pastry Pieces</button>
+                <button class="filter-btn" onclick="document.getElementById('cakes').scrollIntoView({behavior: 'smooth'});">Ice Cream Cakes</button>
+            </div>
+            <h3 class="menu-subtitle">Ice Cream Flavors</h3>
+            <div class="menu-grid" id="menuGrid" style="margin-top: 1.5rem;">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Frozen Pastry Pieces Section -->
+    <section id="pastries" class="menu-section">
+        <div class="container">
+            <h2 class="section-title"><span role="img" aria-label="Frozen">🧊</span> Frozen Pastry Pieces</h2>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Opera</h3></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Crispy Snickers</h3><div class="menu-item-price">2.78$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Forêt Noire</h3><div class="menu-item-price">2.78$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Trio Chocolate House</h3><div class="menu-item-price">2.78$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Bahamas</h3></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Biscottam Chocolate</h3></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Cheese Cake Kinder</h3><div class="menu-item-price">2.78$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Cheese Cake Strawberry</h3></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Cheese Cake Blackberry</h3></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Cheese Cake Oreo</h3></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Cheese Cake Lotus</h3></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ice Cream Cakes Section -->
+    <section id="cakes" class="menu-section">
+        <div class="container">
+            <h2 class="section-title"><span role="img" aria-label="Cake">🍰</span> Ice Cream Cakes</h2>
+            <div class="menu-grid">
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Circle Pistachio</h3><div class="menu-item-price">22$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Round Ashta Ghazel</h3><div class="menu-item-price">20$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Long Profiterol</h3></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Long Choco Strawberry Vanilla</h3><div class="menu-item-price">18$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Long Strawberry Mango Lemon</h3><div class="menu-item-price">18$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Long Red Fruit Cheesecake</h3><div class="menu-item-price">20$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Long Ashta Warad</h3><div class="menu-item-price">20$</div></div></div>
+                <div class="menu-item"><div class="menu-item-content"><h3 class="menu-item-title">Circle Vanilla Crumbled Chocolate</h3><div class="menu-item-price">20$</div></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2020, Scoops & Smiles has been bringing joy to our community with handcrafted ice cream made from locally sourced ingredients. Our passion for quality and creativity drives us to create unique flavors that delight your taste buds.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-leaf"></i>
+                            <h3>Natural Ingredients</h3>
+                            <p>We use only the finest natural ingredients</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <h3>Made with Love</h3>
+                            <p>Every scoop is crafted with care and passion</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <h3>Premium Quality</h3>
+                            <p>Exceptional taste and texture in every bite</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-ice-cream"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Address</h3>
+                            <p>123 Ice Cream Street<br>Sweet City, SC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>(555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Hours</h3>
+                            <p>Mon-Sun: 11:00 AM - 10:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Scoops By Surgel</h3>
+                    <p>Bringing joy one scoop at a time</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for special offers and updates</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Scoops By Surgel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
