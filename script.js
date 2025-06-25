@@ -1,35 +1,35 @@
 // Menu Data
 const menuItems = [
-    { name: "Kinder Ice Cream", description: "Creamy Kinder chocolate delight", price: "$1.11", category: "classic", icon: "🍫" },
-    { name: "Cotton Candy Ice Cream", description: "Sweet and fluffy cotton candy flavor", price: "$1.11", category: "classic", icon: "🍬" },
-    { name: "Bubble Gum Ice Cream", description: "Fun bubble gum taste for all ages", price: "$1.11", category: "classic", icon: "🍭" },
-    { name: "Red Velvet Ice Cream", description: "Rich red velvet cake in a scoop", price: "$1.11", category: "premium", icon: "🧁" },
-    { name: "Ferrero Rocher Ice Cream", description: "Hazelnut chocolate luxury", price: "$1.11", category: "premium", icon: "🥮" },
-    { name: "Dark Chocolate Ice Cream", description: "Intense dark chocolate flavor", price: "$1.11", category: "classic", icon: "🍫" },
-    { name: "Cheese Cake Ice Cream", description: "Creamy cheesecake in every bite", price: "$1.11", category: "premium", icon: "🍰" },
-    { name: "Pistachio Ice Cream", description: "Nutty and creamy pistachio treat", price: "$1.11", category: "classic", icon: "🥜" },
-    { name: "Caramel Caffè Frappe Ice Cream", description: "Coffee and caramel fusion", price: "$1.11", category: "premium", icon: "☕" },
-    { name: "After Eight Ice Cream", description: "Mint chocolate after-dinner treat", price: "$1.11", category: "premium", icon: "🌿" },
-    { name: "Fig & Almond Ice Cream", description: "Exotic fig and almond blend", price: "$1.11", category: "premium", icon: "🌰" },
-    { name: "White Hershey's Ice Cream", description: "White chocolate Hershey's flavor", price: "$1.11", category: "classic", icon: "🤍" },
-    { name: "Oreo Ice Cream", description: "Cookies and cream classic", price: "$1.11", category: "classic", icon: "🍪" },
-    { name: "Biscotto Chocolate Ice Cream", description: "Chocolate and biscuit combo", price: "$1.11", category: "premium", icon: "🍪" },
-    { name: "Passion Fruit Ice Cream", description: "Tropical passion fruit freshness", price: "$1.11", category: "vegan", icon: "🥭" },
-    { name: "Lotus Ice Cream", description: "Lotus biscuit caramel flavor", price: "$1.11", category: "premium", icon: "🍯" },
-    { name: "Tiramisu Ice Cream", description: "Classic Italian tiramisu taste", price: "$1.11", category: "premium", icon: "🍮" },
-    { name: "Caramel Frappuccino Ice Cream", description: "Caramel coffeehouse favorite", price: "$1.11", category: "premium", icon: "🥤" },
-    { name: "Mango Ice Cream", description: "Sweet and juicy mango flavor", price: "$1.11", category: "vegan", icon: "🥭" },
-    { name: "Lemon Ice Cream", description: "Zesty and refreshing lemon", price: "$1.11", category: "vegan", icon: "🍋" },
-    { name: "Knefe Ice Cream", description: "Middle Eastern dessert in a scoop", price: "$1.11", category: "premium", icon: "🧀" },
-    { name: "Dubai Chocolate Ice Cream", description: "Luxurious Dubai-style chocolate", price: "$1.11", category: "premium", icon: "🏜️" },
-    { name: "Greek Yogurt Blueberry Ice Cream", description: "Tangy yogurt and blueberry", price: "$1.11", category: "vegan", icon: "🫐" },
-    { name: "Milky Mango Macadamia Ice Cream", description: "Mango and macadamia nut mix", price: "$1.11", category: "premium", icon: "🥭" },
-    { name: "Vanilla Ice Cream", description: "Classic creamy vanilla", price: "$1.11", category: "classic", icon: "🍦" },
-    { name: "Chocolate Ice Cream", description: "Smooth and rich chocolate", price: "$1.11", category: "classic", icon: "🍫" },
-    { name: "Strawberry Ice Cream", description: "Fresh strawberry delight", price: "$1.11", category: "classic", icon: "🍓" },
-    { name: "Blackberry Ice Cream", description: "Sweet and tart blackberry", price: "$1.11", category: "vegan", icon: "🫐" },
-    { name: "Avocado Ice Cream", description: "Creamy avocado flavor", price: "$1.67", category: "vegan", icon: "🥑" },
-    { name: "Raspberry Matcha Ice Cream", description: "Raspberry and matcha fusion", price: "$1.69", category: "vegan", icon: "🍵" }
+    { name: "Kinder Ice Cream", description: "Creamy Kinder chocolate delight", price: "$1.11", category: "classic", icon: "🍫", color: "#8B4513" },
+    { name: "Cotton Candy Ice Cream", description: "Sweet and fluffy cotton candy flavor", price: "$1.11", category: "classic", icon: "🍬", color: "#FFB6C1" },
+    { name: "Bubble Gum Ice Cream", description: "Fun bubble gum taste for all ages", price: "$1.11", category: "classic", icon: "🍭", color: "#FF69B4" },
+    { name: "Red Velvet Ice Cream", description: "Rich red velvet cake in a scoop", price: "$1.11", category: "premium", icon: "🧁", color: "#DC143C" },
+    { name: "Ferrero Rocher Ice Cream", description: "Hazelnut chocolate luxury", price: "$1.11", category: "premium", icon: "🥮", color: "#8B4513" },
+    { name: "Dark Chocolate Ice Cream", description: "Intense dark chocolate flavor", price: "$1.11", category: "classic", icon: "🍫", color: "#2F1B14" },
+    { name: "Cheese Cake Ice Cream", description: "Creamy cheesecake in every bite", price: "$1.11", category: "premium", icon: "🍰", color: "#FFF8DC" },
+    { name: "Pistachio Ice Cream", description: "Nutty and creamy pistachio treat", price: "$1.11", category: "classic", icon: "🥜", color: "#90EE90" },
+    { name: "Caramel Caffè Frappe Ice Cream", description: "Coffee and caramel fusion", price: "$1.11", category: "premium", icon: "☕", color: "#8B4513" },
+    { name: "After Eight Ice Cream", description: "Mint chocolate after-dinner treat", price: "$1.11", category: "premium", icon: "🌿", color: "#98FB98" },
+    { name: "Fig & Almond Ice Cream", description: "Exotic fig and almond blend", price: "$1.11", category: "premium", icon: "🌰", color: "#8B4513" },
+    { name: "White Hershey's Ice Cream", description: "White chocolate Hershey's flavor", price: "$1.11", category: "classic", icon: "🤍", color: "#F5F5DC" },
+    { name: "Oreo Ice Cream", description: "Cookies and cream classic", price: "$1.11", category: "classic", icon: "🍪", color: "#2F1B14" },
+    { name: "Biscotto Chocolate Ice Cream", description: "Chocolate and biscuit combo", price: "$1.11", category: "premium", icon: "🍪", color: "#8B4513" },
+    { name: "Passion Fruit Ice Cream", description: "Tropical passion fruit freshness", price: "$1.11", category: "vegan", icon: "🥭", color: "#FFD700" },
+    { name: "Lotus Ice Cream", description: "Lotus biscuit caramel flavor", price: "$1.11", category: "premium", icon: "🍯", color: "#DAA520" },
+    { name: "Tiramisu Ice Cream", description: "Classic Italian tiramisu taste", price: "$1.11", category: "premium", icon: "🍮", color: "#8B4513" },
+    { name: "Caramel Frappuccino Ice Cream", description: "Caramel coffeehouse favorite", price: "$1.11", category: "premium", icon: "🥤", color: "#8B4513" },
+    { name: "Mango Ice Cream", description: "Sweet and juicy mango flavor", price: "$1.11", category: "vegan", icon: "🥭", color: "#FFA500" },
+    { name: "Lemon Ice Cream", description: "Zesty and refreshing lemon", price: "$1.11", category: "vegan", icon: "🍋", color: "#FFFF00" },
+    { name: "Knefe Ice Cream", description: "Middle Eastern dessert in a scoop", price: "$1.11", category: "premium", icon: "🧀", color: "#FFD700" },
+    { name: "Dubai Chocolate Ice Cream", description: "Luxurious Dubai-style chocolate", price: "$1.11", category: "premium", icon: "🏜️", color: "#8B4513" },
+    { name: "Greek Yogurt Blueberry Ice Cream", description: "Tangy yogurt and blueberry", price: "$1.11", category: "vegan", icon: "🫐", color: "#4169E1" },
+    { name: "Milky Mango Macadamia Ice Cream", description: "Mango and macadamia nut mix", price: "$1.11", category: "premium", icon: "🥭", color: "#FFA500" },
+    { name: "Vanilla Ice Cream", description: "Classic creamy vanilla", price: "$1.11", category: "classic", icon: "🍦", color: "#F5F5DC" },
+    { name: "Chocolate Ice Cream", description: "Smooth and rich chocolate", price: "$1.11", category: "classic", icon: "🍫", color: "#8B4513" },
+    { name: "Strawberry Ice Cream", description: "Fresh strawberry delight", price: "$1.11", category: "classic", icon: "🍓", color: "#FF69B4" },
+    { name: "Blackberry Ice Cream", description: "Sweet and tart blackberry", price: "$1.11", category: "vegan", icon: "🫐", color: "#4B0082" },
+    { name: "Avocado Ice Cream", description: "Creamy avocado flavor", price: "$1.67", category: "vegan", icon: "🥑", color: "#228B22" },
+    { name: "Raspberry Matcha Ice Cream", description: "Raspberry and matcha fusion", price: "$1.69", category: "vegan", icon: "🍵", color: "#32CD32" }
 ];
 
 // DOM Elements
@@ -65,8 +65,9 @@ function displayMenuItems(filter) {
 function createMenuItem(item) {
     const menuItem = document.createElement('div');
     menuItem.className = 'menu-item';
+    menuItem.style.borderLeft = `4px solid ${item.color}`;
     menuItem.innerHTML = `
-        <div class="menu-item-image">
+        <div class="menu-item-image" style="background: linear-gradient(45deg, ${item.color}, ${item.color}dd);">
             <span style="font-size: 4rem;">${item.icon}</span>
         </div>
         <div class="menu-item-content">
