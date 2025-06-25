@@ -90,19 +90,6 @@ function createMenuItem(item) {
 
 // Setup event listeners
 function setupEventListeners() {
-    // Filter buttons
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-            // Display filtered items
-            const filter = this.getAttribute('data-filter');
-            displayMenuItems(filter);
-        });
-    });
-    
     // Mobile menu toggle
     hamburger.addEventListener('click', function() {
         hamburger.classList.toggle('active');
