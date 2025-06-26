@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    @keyframes icecream-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+    .animated-icecream {
+      display: inline-block;
+      animation: icecream-bounce 1.6s infinite cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -189,14 +199,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Send us a message</h3>
-                    <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="submit-btn">Send Message</button>
-                    </form>
+                <!-- Friendly design replacing contact form -->
+                <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+                  <div style="background: linear-gradient(135deg, #f8fafc 60%, #ffe6fa 100%); border-radius: 18px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); padding: 2rem 1.5rem; text-align: center; max-width: 320px; margin: 2rem auto;">
+                    <div class="animated-icecream" style="font-size: 2.5rem; margin-bottom: 0.5rem;">🍦</div>
+                    <div style="font-size: 1.1rem; color: #444; font-weight: 500;">We love hearing from you!<br>Visit us or call anytime for a scoop of happiness.</div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -210,9 +218,7 @@
                     <h3>Scoops By Surgel</h3>
                     <p>Bringing joy one scoop at a time</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/scoops_by_surgel/?hl=en" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -223,14 +229,6 @@
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Newsletter</h4>
-                    <p>Subscribe for special offers and updates</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email">
-                        <button type="submit">Subscribe</button>
-                    </form>
                 </div>
             </div>
             <div class="footer-bottom">
