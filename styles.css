@@ -176,8 +176,8 @@ body {
 /* Ice Cream Animation */
 .ice-cream-animation {
     position: relative;
-    height: 576px;
-    width: 144px;
+    height: 800px;
+    width: 200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -187,14 +187,14 @@ body {
 }
 
 .scoop {
-    width: 144px;
-    height: 144px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     position: relative;
     left: 0;
     z-index: 2;
-    margin-bottom: -54px;
-    box-shadow: 0 14px 29px rgba(0,0,0,0.08);
+    margin-bottom: -75px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
 .scoop-1 {
@@ -211,13 +211,13 @@ body {
 }
 
 .cone {
-    width: 108px;
-    height: 216px;
+    width: 150px;
+    height: 300px;
     background: linear-gradient(45deg, #8B4513, #D2691E);
     clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
     position: relative;
     z-index: 1;
-    margin-top: -54px;
+    margin-top: -75px;
 }
 
 /* Menu Section */
@@ -536,6 +536,7 @@ body {
 .social-links {
     display: flex;
     gap: 1rem;
+    justify-content: center;
 }
 
 .social-links a {
