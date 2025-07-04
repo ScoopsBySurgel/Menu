@@ -100,70 +100,18 @@ function displayMenuItems(filter) {
     });
 }
 
-// Create menu item element
-function createMenuItem(item) {
-    const menuItem = document.createElement('div');
-    menuItem.className = 'menu-item';
-    menuItem.style.borderLeft = `4px solid ${item.color}`;
-    
-    // Use image if available, otherwise create a styled emoji placeholder
-    const imageContent = item.image 
-        ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%; border-radius: 10px;">`
-        : `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
-            <span style="font-size: 3rem; margin-bottom: 0.5rem;">${item.icon}</span>
-            <span style="font-size: 0.9rem; text-align: center; padding: 0 10px; opacity: 0.9;">${item.name}</span>
-           </div>`;
-    
-    menuItem.innerHTML = `
-        <div class="menu-item-image" style="background: linear-gradient(45deg, ${item.color}, ${item.color}dd);">
-            ${imageContent}
-        </div>
-        <div class="menu-item-content">
-            <h3 class="menu-item-title">${item.name}</h3>
-            <p class="menu-item-description">${item.description}</p>
-            <div class="menu-item-price">${item.price}</div>
-            <span class="menu-item-category">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
-        </div>
-    `;
-    
-    // Add click animation
-    menuItem.addEventListener('click', function() {
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 150);
-    });
-    
-    return menuItem;
-}
-
-// Display ice cream sticks
-function displayIceCreamSticks() {
-    const sticksGrid = document.getElementById('sticksGrid');
-    if (!sticksGrid) return;
-    
-    sticksGrid.innerHTML = '';
-    
-    iceCreamSticks.forEach(item => {
-        const stickItem = createStickItem(item);
-        sticksGrid.appendChild(stickItem);
-    });
-}
-
-// Show ice cream stick modal with morph transition
-function showIceCreamStickModal(item, cardElement) {
+// General modal for both flavors and sticks
+function showIceCreamModal(item, cardElement) {
     // Remove existing modal if any
     const existingModal = document.querySelector('.ice-cream-modal');
     if (existingModal) {
         existingModal.remove();
     }
-    
     // Get card bounding rect for morph effect
     let cardRect = null;
     if (cardElement) {
         cardRect = cardElement.getBoundingClientRect();
     }
-    
     // Create modal
     const modal = document.createElement('div');
     modal.className = 'ice-cream-modal';
@@ -181,7 +129,6 @@ function showIceCreamStickModal(item, cardElement) {
         opacity: 0;
         transition: opacity 0.3s ease;
     `;
-    
     // Create modal content
     const modalContent = document.createElement('div');
     modalContent.style.cssText = `
@@ -196,7 +143,6 @@ function showIceCreamStickModal(item, cardElement) {
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         overflow: visible;
     `;
-    
     // Create close button
     const closeBtn = document.createElement('button');
     closeBtn.innerHTML = '×';
@@ -223,7 +169,6 @@ function showIceCreamStickModal(item, cardElement) {
     closeBtn.addEventListener('mouseleave', function() {
         this.style.backgroundColor = 'transparent';
     });
-    
     // Create image container with card-like gradient background
     const imageContainer = document.createElement('div');
     imageContainer.style.cssText = `
@@ -243,7 +188,6 @@ function showIceCreamStickModal(item, cardElement) {
         overflow: hidden;
         transition: all 0.5s cubic-bezier(.68,-0.55,.27,1.55);
     `;
-    
     // Create image
     const image = document.createElement('img');
     image.src = item.image;
@@ -257,7 +201,6 @@ function showIceCreamStickModal(item, cardElement) {
         box-shadow: none;
         display: block;
     `;
-    
     // Create item details
     const details = document.createElement('div');
     details.style.cssText = `
@@ -266,10 +209,10 @@ function showIceCreamStickModal(item, cardElement) {
     `;
     details.innerHTML = `
         <h3 style="color: #333; margin-bottom: 0.5rem; font-size: 1.5rem;">${item.name}</h3>
-        <p style="color: #666; margin-bottom: 0.5rem; font-size: 1rem;">${item.description}</p>
+        <p style="color: #666; margin-bottom: 0.5rem; font-size: 1rem;">${item.description || ''}</p>
         <div style="color: #ff6b6b; font-weight: bold; font-size: 1.3rem;">${item.price}</div>
+        ${item.category ? `<div style='margin-top:0.5rem; color:#888; font-size:1rem;'>${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</div>` : ''}
     `;
-    
     // Assemble modal
     imageContainer.appendChild(image);
     modalContent.appendChild(closeBtn);
@@ -277,7 +220,6 @@ function showIceCreamStickModal(item, cardElement) {
     modalContent.appendChild(details);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
-    
     // Morph effect: set initial position/size to card, then animate to center
     if (cardRect) {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -290,7 +232,6 @@ function showIceCreamStickModal(item, cardElement) {
         imageContainer.style.marginBottom = '0';
         imageContainer.style.transform = 'none';
         imageContainer.style.zIndex = '10001';
-        // Animate in after a tick
         setTimeout(() => {
             modal.style.opacity = '1';
             modalContent.style.transform = 'scale(1)';
@@ -302,7 +243,6 @@ function showIceCreamStickModal(item, cardElement) {
             imageContainer.style.marginBottom = '1.5rem';
             imageContainer.style.zIndex = '';
         }, 10);
-        // Clean up inline styles after transition for responsiveness
         imageContainer.addEventListener('transitionend', function handler() {
             imageContainer.style.position = '';
             imageContainer.style.left = '';
@@ -319,7 +259,6 @@ function showIceCreamStickModal(item, cardElement) {
             modalContent.style.transform = 'scale(1)';
         }, 10);
     }
-    
     // Close functionality
     const closeModal = () => {
         modal.style.opacity = '0';
@@ -344,14 +283,60 @@ function showIceCreamStickModal(item, cardElement) {
     });
 }
 
-// Update createStickItem to pass the card element
+// Update createMenuItem to use the modal with morph effect
+function createMenuItem(item) {
+    const menuItem = document.createElement('div');
+    menuItem.className = 'menu-item';
+    menuItem.style.borderLeft = `4px solid ${item.color}`;
+    // Use image if available, otherwise create a styled emoji placeholder
+    const imageContent = item.image 
+        ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%; border-radius: 10px;">`
+        : `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
+            <span style="font-size: 3rem; margin-bottom: 0.5rem;">${item.icon}</span>
+            <span style="font-size: 0.9rem; text-align: center; padding: 0 10px; opacity: 0.9;">${item.name}</span>
+           </div>`;
+    menuItem.innerHTML = `
+        <div class="menu-item-image" style="background: linear-gradient(45deg, ${item.color}, ${item.color}dd);">
+            ${imageContent}
+        </div>
+        <div class="menu-item-content">
+            <h3 class="menu-item-title">${item.name}</h3>
+            <p class="menu-item-description">${item.description}</p>
+            <div class="menu-item-price">${item.price}</div>
+            <span class="menu-item-category">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
+        </div>
+    `;
+    // Add click animation and modal functionality
+    menuItem.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+        // Show modal with morph effect
+        showIceCreamModal(item, menuItem);
+    });
+    return menuItem;
+}
+
+// Display ice cream sticks
+function displayIceCreamSticks() {
+    const sticksGrid = document.getElementById('sticksGrid');
+    if (!sticksGrid) return;
+    
+    sticksGrid.innerHTML = '';
+    
+    iceCreamSticks.forEach(item => {
+        const stickItem = createStickItem(item);
+        sticksGrid.appendChild(stickItem);
+    });
+}
+
+// Update createStickItem to use the general modal
 function createStickItem(item) {
     const stickItem = document.createElement('div');
     stickItem.className = 'menu-item';
     stickItem.style.borderLeft = `4px solid ${item.color}`;
-    // Determine image position - raise strawberry by 15% more
     const imagePosition = item.name.toLowerCase().includes('strawberry') ? 'center 5%' : 'center 20%';
-    // Use image if available, otherwise create a styled emoji placeholder
     const imageContent = item.image 
         ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: ${imagePosition}; border-radius: 10px;">`
         : `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
@@ -369,14 +354,12 @@ function createStickItem(item) {
             <span class="menu-item-category">Stick</span>
         </div>
     `;
-    // Add click animation and modal functionality
     stickItem.addEventListener('click', function() {
         this.style.transform = 'scale(0.95)';
         setTimeout(() => {
             this.style.transform = 'scale(1)';
         }, 150);
-        // Show modal with full image and morph effect
-        showIceCreamStickModal(item, stickItem);
+        showIceCreamModal(item, stickItem);
     });
     return stickItem;
 }
