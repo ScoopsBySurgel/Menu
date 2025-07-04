@@ -32,6 +32,18 @@ const menuItems = [
     { name: "Raspberry Matcha Ice Cream", description: "Raspberry and matcha fusion", price: "$1.69", category: "vegan", icon: "🍵", color: "#32CD32", image: "images/Raspberry_Matcha_themed.png" }
 ];
 
+// Ice Cream Sticks Data
+const iceCreamSticks = [
+    { name: "Strawberry Cheesecake Stick", description: "Creamy strawberry cheesecake on a stick", price: "$2.22", icon: "🍓", color: "#FF69B4", image: "images/Ice_cream_stick_Strawberry.png" },
+    { name: "Ashta Pistachio Stick", description: "Traditional ashta with pistachio flavor", price: "$2.22", icon: "🥜", color: "#90EE90", image: "images/Ice_cream_stick_AshtaPistachio.png" },
+    { name: "Cookies & Cream Stick", description: "Classic cookies and cream on a stick", price: "$2.25", icon: "🍪", color: "#2F1B14", image: "images/Ice_cream_stick_cockiesandcream.png" },
+    { name: "Bubble Trouble Stick", description: "Fun bubble gum flavor on a stick", price: "$2.25", icon: "🍭", color: "#FF69B4", image: "images/ice_cream_stick_BubbleGum.png" },
+    { name: "Vanilla Choco Crisp Stick", description: "Vanilla with chocolate crisp coating", price: "$2.25", icon: "🍦", color: "#F5F5DC", image: "images/ice_cream_stick_VanillaChocoCrisp.png" },
+    { name: "Duo Chocolate Stick", description: "Double chocolate delight on a stick", price: "$2.25", icon: "🍫", color: "#8B4513", image: "images/ice_cream_stick_Duochocolate.png" },
+    { name: "Choco Peanut Butter Stick", description: "Chocolate and peanut butter combo", price: "$2.25", icon: "🥜", color: "#DAA520", image: "images/ice_cream_stick_peanutbutter.png" },
+    { name: "Salted Caramel Stick", description: "Sweet and salty caramel treat", price: "$2.25", icon: "🍯", color: "#DAA520", image: "images/ice_cream_stick_saltedcaramel.png" }
+];
+
 // DOM Elements
 const menuGrid = document.getElementById('menuGrid');
 const filterButtons = document.querySelectorAll('.filter-btn');
@@ -43,6 +55,7 @@ const newsletterForm = document.querySelector('.newsletter-form');
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function() {
     displayMenuItems('all');
+    displayIceCreamSticks();
     setupEventListeners();
     setupSmoothScrolling();
     const cone = document.querySelector('.ice-cream-animation');
@@ -122,6 +135,250 @@ function createMenuItem(item) {
     });
     
     return menuItem;
+}
+
+// Display ice cream sticks
+function displayIceCreamSticks() {
+    const sticksGrid = document.getElementById('sticksGrid');
+    if (!sticksGrid) return;
+    
+    sticksGrid.innerHTML = '';
+    
+    iceCreamSticks.forEach(item => {
+        const stickItem = createStickItem(item);
+        sticksGrid.appendChild(stickItem);
+    });
+}
+
+// Show ice cream stick modal with morph transition
+function showIceCreamStickModal(item, cardElement) {
+    // Remove existing modal if any
+    const existingModal = document.querySelector('.ice-cream-modal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    // Get card bounding rect for morph effect
+    let cardRect = null;
+    if (cardElement) {
+        cardRect = cardElement.getBoundingClientRect();
+    }
+    
+    // Create modal
+    const modal = document.createElement('div');
+    modal.className = 'ice-cream-modal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    `;
+    
+    // Create modal content
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+        background: white;
+        border-radius: 20px;
+        padding: 2rem;
+        max-width: 90%;
+        max-height: 90%;
+        position: relative;
+        transform: scale(0.7);
+        transition: transform 0.3s ease;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: visible;
+    `;
+    
+    // Create close button
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '×';
+    closeBtn.style.cssText = `
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+        color: #666;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s ease;
+    `;
+    closeBtn.addEventListener('mouseenter', function() {
+        this.style.backgroundColor = '#f0f0f0';
+    });
+    closeBtn.addEventListener('mouseleave', function() {
+        this.style.backgroundColor = 'transparent';
+    });
+    
+    // Create image container with card-like gradient background
+    const imageContainer = document.createElement('div');
+    imageContainer.style.cssText = `
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        background: linear-gradient(45deg, ${item.color}, ${item.color}dd);
+        border-radius: 15px;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        box-sizing: border-box;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+        width: 100%;
+        max-width: 400px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+    `;
+    
+    // Create image
+    const image = document.createElement('img');
+    image.src = item.image;
+    image.alt = item.name;
+    image.style.cssText = `
+        max-width: 100%;
+        max-height: 50vh;
+        object-fit: contain;
+        border-radius: 10px;
+        background: transparent;
+        box-shadow: none;
+        display: block;
+    `;
+    
+    // Create item details
+    const details = document.createElement('div');
+    details.style.cssText = `
+        text-align: center;
+        margin-top: 1rem;
+    `;
+    details.innerHTML = `
+        <h3 style="color: #333; margin-bottom: 0.5rem; font-size: 1.5rem;">${item.name}</h3>
+        <p style="color: #666; margin-bottom: 0.5rem; font-size: 1rem;">${item.description}</p>
+        <div style="color: #ff6b6b; font-weight: bold; font-size: 1.3rem;">${item.price}</div>
+    `;
+    
+    // Assemble modal
+    imageContainer.appendChild(image);
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(imageContainer);
+    modalContent.appendChild(details);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    // Morph effect: set initial position/size to card, then animate to center
+    if (cardRect) {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+        imageContainer.style.position = 'fixed';
+        imageContainer.style.left = (cardRect.left + scrollLeft) + 'px';
+        imageContainer.style.top = (cardRect.top + scrollTop) + 'px';
+        imageContainer.style.width = cardRect.width + 'px';
+        imageContainer.style.height = cardRect.height + 'px';
+        imageContainer.style.marginBottom = '0';
+        imageContainer.style.transform = 'none';
+        imageContainer.style.zIndex = '10001';
+        // Animate in after a tick
+        setTimeout(() => {
+            modal.style.opacity = '1';
+            modalContent.style.transform = 'scale(1)';
+            imageContainer.style.position = '';
+            imageContainer.style.left = '';
+            imageContainer.style.top = '';
+            imageContainer.style.width = '';
+            imageContainer.style.height = '';
+            imageContainer.style.marginBottom = '1.5rem';
+            imageContainer.style.zIndex = '';
+        }, 10);
+        // Clean up inline styles after transition for responsiveness
+        imageContainer.addEventListener('transitionend', function handler() {
+            imageContainer.style.position = '';
+            imageContainer.style.left = '';
+            imageContainer.style.top = '';
+            imageContainer.style.width = '';
+            imageContainer.style.height = '';
+            imageContainer.style.marginBottom = '1.5rem';
+            imageContainer.style.zIndex = '';
+            imageContainer.removeEventListener('transitionend', handler);
+        });
+    } else {
+        setTimeout(() => {
+            modal.style.opacity = '1';
+            modalContent.style.transform = 'scale(1)';
+        }, 10);
+    }
+    
+    // Close functionality
+    const closeModal = () => {
+        modal.style.opacity = '0';
+        modalContent.style.transform = 'scale(0.7)';
+        setTimeout(() => {
+            if (modal.parentNode) {
+                modal.parentNode.removeChild(modal);
+            }
+        }, 300);
+    };
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    document.addEventListener('keydown', function escHandler(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+            document.removeEventListener('keydown', escHandler);
+        }
+    });
+}
+
+// Update createStickItem to pass the card element
+function createStickItem(item) {
+    const stickItem = document.createElement('div');
+    stickItem.className = 'menu-item';
+    stickItem.style.borderLeft = `4px solid ${item.color}`;
+    // Determine image position - raise strawberry by 15% more
+    const imagePosition = item.name.toLowerCase().includes('strawberry') ? 'center 5%' : 'center 20%';
+    // Use image if available, otherwise create a styled emoji placeholder
+    const imageContent = item.image 
+        ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: ${imagePosition}; border-radius: 10px;">`
+        : `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
+            <span style="font-size: 3rem; margin-bottom: 0.5rem;">${item.icon}</span>
+            <span style="font-size: 0.9rem; text-align: center; padding: 0 10px; opacity: 0.9;">${item.name}</span>
+           </div>`;
+    stickItem.innerHTML = `
+        <div class="menu-item-image" style="background: linear-gradient(45deg, ${item.color}, ${item.color}dd);">
+            ${imageContent}
+        </div>
+        <div class="menu-item-content">
+            <h3 class="menu-item-title">${item.name}</h3>
+            <p class="menu-item-description">${item.description}</p>
+            <div class="menu-item-price">${item.price}</div>
+            <span class="menu-item-category">Stick</span>
+        </div>
+    `;
+    // Add click animation and modal functionality
+    stickItem.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+        // Show modal with full image and morph effect
+        showIceCreamStickModal(item, stickItem);
+    });
+    return stickItem;
 }
 
 // Setup event listeners
