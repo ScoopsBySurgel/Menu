@@ -100,8 +100,6 @@ const menuGrid = document.getElementById('menuGrid');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-const contactForm = document.getElementById('contactForm');
-const newsletterForm = document.querySelector('.newsletter-form');
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function() {
@@ -603,24 +601,6 @@ function setupEventListeners() {
             navMenu.classList.remove('active');
         });
     });
-    
-    // Contact form submission
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
-            this.reset();
-        });
-    }
-    
-    // Newsletter form submission
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            showNotification('Thank you for subscribing to our newsletter!', 'success');
-            this.reset();
-        });
-    }
     
     // Navbar scroll effect
     window.addEventListener('scroll', function() {
