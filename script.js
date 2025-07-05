@@ -241,6 +241,7 @@ function showIceCreamModal(item, cardElement) {
         position: relative;
         overflow: hidden;
         transition: all 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+        justify-content: center;
     `;
     // Create image
     let imageFit = 'cover';
@@ -273,6 +274,10 @@ function showIceCreamModal(item, cardElement) {
     // Special tweak for Halawet Jeben and Ashta Ghazel: make modal images a bit bigger
     if (item.name === 'Halawet Jeben' || item.name === 'Ashta Ghazel') {
         image.style.transform = 'scale(0.9)';
+    }
+    // Special tweak for Brownie: nudge image down to center visually
+    if (item.name === 'Brownie') {
+        image.style.objectPosition = 'center 60%';
     }
     // Create item details
     const details = document.createElement('div');
