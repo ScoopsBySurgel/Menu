@@ -44,6 +44,57 @@ const iceCreamSticks = [
     { name: "Salted Caramel Stick", description: "Sweet and salty caramel treat", price: "$2.25", icon: "🍯", color: "#DAA520", image: "images/ice_cream_stick_saltedcaramel.png" }
 ];
 
+// Ice Cream Cakes Data
+const iceCreamCakes = [
+    { name: "Circle Pistachio", description: "Delicious pistachio ice cream cake in circle shape", price: "$22", icon: "🍰", color: "#90EE90", image: "images/ice_cream_cake_round_ashta_ghazel.png" },
+    { name: "Round Ashta Ghazel", description: "Traditional ashta with ghazel in round shape", price: "$20", icon: "🍰", color: "#FFD700", image: "images/ice_cream_cake_round_ashta_ghazel.png" },
+    { name: "Long Profiterol", description: "Elegant profiterol ice cream cake", price: "$20", icon: "🍰", color: "#8B4513", image: "images/ice_cream_cake_long_profiterole.png" },
+    { name: "Long Choco Strawberry Vanilla", description: "Triple flavor chocolate, strawberry, and vanilla", price: "$18", icon: "🍰", color: "#FF69B4", image: "images/ice_cream_cake_longchocolatestrawbeeyvanilla.png" },
+    { name: "Long Strawberry Mango Lemon", description: "Refreshing strawberry, mango, and lemon combo", price: "$18", icon: "🍰", color: "#FFA500", image: "images/ice_cream_cake_longstrawberrymangolemon.png" },
+    { name: "Long Red Fruit Cheesecake", description: "Rich red fruit cheesecake ice cream cake", price: "$20", icon: "🍰", color: "#DC143C", image: "images/ice_cream_cake_long_redfruit_cheesecake.png" },
+    { name: "Long Ashta Warad", description: "Traditional ashta with warad flavor", price: "$20", icon: "🍰", color: "#FF69B4", image: "images/ice_cream_cake_long_ashta_wared.png" },
+    { name: "Circle Vanilla Crumbled Chocolate", description: "Vanilla with crumbled chocolate topping", price: "$20", icon: "🍰", color: "#F5F5DC", image: "images/ice_cream_cake_round_ashta_ghazel.png" }
+];
+
+// Cake Mousse Data
+const cakeMousse = [
+    { name: "Red Velvet", description: "Classic red velvet cake mousse", price: "$20", icon: "🍰", color: "#DC143C", image: "images/cake_mousse_red_velvet.png" },
+    { name: "Brownie", description: "Rich chocolate brownie mousse", price: "$20", icon: "🍰", color: "#8B4513", image: "images/cake_mousse_brownies.png" },
+    { name: "Bahamas", description: "Tropical Bahamas cake mousse", price: "$20", icon: "🍰", color: "#FFA500", image: "images/cake_mousse_bahamas.png" },
+    { name: "Kit Kat", description: "Delicious Kit Kat cake mousse", price: "$22", icon: "🍰", color: "#DAA520", image: "images/cake_mousse_kitkat.png" },
+    { name: "Lotus Cake", description: "Traditional Lotus cake mousse", price: "$15", icon: "🍰", color: "#DAA520", image: "images/cake_mousse_lazy_cake.png" },
+    { name: "Cortina", description: "Elegant Cortina cake mousse", price: "$20", icon: "🍰", color: "#8B4513", image: "images/cake_mousse_round_cortina_cake.png" },
+    { name: "Lazy cake", description: "Classic lazy cake mousse", price: "$15", icon: "🍰", color: "#DAA520", image: "images/cake_mousse_lazy_cake.png" }
+];
+
+// Pieces Cake Ice Cream Data
+const piecesCakeIceCream = [
+    {
+        name: "Osmaliya",
+        description: "Traditional Osmaliya with ice cream",
+        price: "$3.33",
+        icon: "🍮",
+        color: "#FFD700",
+        image: "images/pieces_cake_ice_cream_ashta_osmaliya.png"
+    },
+    {
+        name: "Ashta Ghazel",
+        description: "Ashta Ghazel cake ice cream",
+        price: "$3.33",
+        icon: "🍮",
+        color: "#F5F5DC",
+        image: "images/pieces_cake_ice_cream_round_ashta_ghazal.png"
+    },
+    {
+        name: "Halawet Jeben",
+        description: "Halawet Jeben cake ice cream",
+        price: "$3.33",
+        icon: "🍮",
+        color: "#FFF8DC",
+        image: "images/pieces_cake_ice_cream_round_ashta_halewet_el_jeben.png"
+    }
+];
+
 // DOM Elements
 const menuGrid = document.getElementById('menuGrid');
 const filterButtons = document.querySelectorAll('.filter-btn');
@@ -56,6 +107,9 @@ const newsletterForm = document.querySelector('.newsletter-form');
 document.addEventListener('DOMContentLoaded', function() {
     displayMenuItems('all');
     displayIceCreamSticks();
+    displayIceCreamCakes();
+    displayCakeMousse();
+    displayPiecesCakeIceCream();
     setupEventListeners();
     setupSmoothScrolling();
     const cone = document.querySelector('.ice-cream-animation');
@@ -189,18 +243,37 @@ function showIceCreamModal(item, cardElement) {
         transition: all 0.5s cubic-bezier(.68,-0.55,.27,1.55);
     `;
     // Create image
+    let imageFit = 'cover';
+    let imagePosition = 'center';
+    let imageTransform = '';
+    if (item.name === 'Ashta Ghazel' || item.name === 'Halawet Jeben') {
+        imageFit = 'contain';
+        imagePosition = 'center';
+        imageTransform = 'scale(2.6)';
+    }
     const image = document.createElement('img');
     image.src = item.image;
     image.alt = item.name;
     image.style.cssText = `
         max-width: 100%;
         max-height: 50vh;
-        object-fit: contain;
+        object-fit: ${imageFit};
+        object-position: ${imagePosition};
         border-radius: 10px;
         background: transparent;
         box-shadow: none;
         display: block;
+        ${imageTransform ? ` transform: ${imageTransform};` : ''}
     `;
+    // Special tweak for Kit Kat mousse centering in modal
+    if (item.name && item.name.toLowerCase() === 'kit kat') {
+        image.style.objectPosition = 'center 60%';
+        image.style.transform = 'scale(1.1)';
+    }
+    // Special tweak for Halawet Jeben and Ashta Ghazel: make modal images a bit bigger
+    if (item.name === 'Halawet Jeben' || item.name === 'Ashta Ghazel') {
+        image.style.transform = 'scale(0.9)';
+    }
     // Create item details
     const details = document.createElement('div');
     details.style.cssText = `
@@ -289,8 +362,16 @@ function createMenuItem(item) {
     menuItem.className = 'menu-item';
     menuItem.style.borderLeft = `4px solid ${item.color}`;
     // Use image if available, otherwise create a styled emoji placeholder
+    let imageFit = 'cover';
+    let imagePosition = 'center';
+    let imageTransform = '';
+    if (item.name === 'Ashta Ghazel' || item.name === 'Halawet Jeben') {
+        imageFit = 'contain';
+        imagePosition = 'center';
+        imageTransform = 'scale(2.6)';
+    }
     const imageContent = item.image 
-        ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 30%; border-radius: 10px;">`
+        ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: ${imageFit}; object-position: ${imagePosition}; border-radius: 10px;${imageTransform ? ` transform: ${imageTransform};` : ''}">`
         : `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
             <span style="font-size: 3rem; margin-bottom: 0.5rem;">${item.icon}</span>
             <span style="font-size: 0.9rem; text-align: center; padding: 0 10px; opacity: 0.9;">${item.name}</span>
@@ -331,6 +412,76 @@ function displayIceCreamSticks() {
     });
 }
 
+// Display ice cream cakes
+function displayIceCreamCakes() {
+    const cakesGrid = document.getElementById('cakesGrid');
+    if (!cakesGrid) return;
+    
+    cakesGrid.innerHTML = '';
+    
+    iceCreamCakes.forEach(item => {
+        const cakeItem = createCakeItem(item);
+        cakesGrid.appendChild(cakeItem);
+    });
+}
+
+// Display cake mousse
+function displayCakeMousse() {
+    const mousseGrid = document.getElementById('mousseGrid');
+    if (!mousseGrid) return;
+    
+    mousseGrid.innerHTML = '';
+    
+    cakeMousse.forEach(item => {
+        const mousseItem = createMousseItem(item);
+        mousseGrid.appendChild(mousseItem);
+    });
+}
+
+// Display pieces cake ice cream
+function displayPiecesCakeIceCream() {
+    const piecesGrid = document.getElementById('piecesCakeGrid');
+    if (!piecesGrid) return;
+    piecesGrid.innerHTML = '';
+    piecesCakeIceCream.forEach(item => {
+        const pieceItem = createPieceCakeItem(item);
+        piecesGrid.appendChild(pieceItem);
+    });
+}
+
+// Create card for pieces cake ice cream
+function createPieceCakeItem(item) {
+    const pieceItem = document.createElement('div');
+    pieceItem.className = 'menu-item';
+    pieceItem.style.borderLeft = `4px solid ${item.color}`;
+    // In createPieceCakeItem, use the same image style for all items (like original ice cream flavors)
+    const imageContent = item.image 
+        ? `<img src=\"${item.image}\" alt=\"${item.name}\" style=\"width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 10px;\">`
+        : `<div style=\"display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;\">
+            <span style=\"font-size: 3rem; margin-bottom: 0.5rem;\">${item.icon}</span>
+            <span style=\"font-size: 0.9rem; text-align: center; padding: 0 10px; opacity: 0.9;\">${item.name}</span>
+           </div>`;
+    pieceItem.innerHTML = `
+        <div class="menu-item-image" style="background: linear-gradient(45deg, ${item.color}, ${item.color}dd);">
+            ${imageContent}
+        </div>
+        <div class="menu-item-content">
+            <h3 class="menu-item-title">${item.name}</h3>
+            <p class="menu-item-description">${item.description}</p>
+            <div class="menu-item-price">${item.price}</div>
+            <span class="menu-item-category">Piece</span>
+        </div>
+    `;
+    pieceItem.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+        showIceCreamModal(item, pieceItem);
+    });
+    return pieceItem;
+}
+
 // Update createStickItem to use the general modal
 function createStickItem(item) {
     const stickItem = document.createElement('div');
@@ -362,6 +513,74 @@ function createStickItem(item) {
         showIceCreamModal(item, stickItem);
     });
     return stickItem;
+}
+
+// Create cake item with the same styling as other menu items
+function createCakeItem(item) {
+    const cakeItem = document.createElement('div');
+    cakeItem.className = 'menu-item';
+    cakeItem.style.borderLeft = `4px solid ${item.color}`;
+    const imageContent = item.image 
+        ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; border-radius: 10px;">`
+        : `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
+            <span style="font-size: 3rem; margin-bottom: 0.5rem;">${item.icon}</span>
+            <span style="font-size: 0.9rem; text-align: center; padding: 0 10px; opacity: 0.9;">${item.name}</span>
+           </div>`;
+    cakeItem.innerHTML = `
+        <div class="menu-item-image" style="background: linear-gradient(45deg, ${item.color}, ${item.color}dd);">
+            ${imageContent}
+        </div>
+        <div class="menu-item-content">
+            <h3 class="menu-item-title">${item.name}</h3>
+            <p class="menu-item-description">${item.description}</p>
+            <div class="menu-item-price">${item.price}</div>
+            <span class="menu-item-category">Cake</span>
+        </div>
+    `;
+    cakeItem.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+        showIceCreamModal(item, cakeItem);
+    });
+    return cakeItem;
+}
+
+// Create mousse item with the same styling as other menu items
+function createMousseItem(item) {
+    const mousseItem = document.createElement('div');
+    mousseItem.className = 'menu-item';
+    mousseItem.style.borderLeft = `4px solid ${item.color}`;
+    
+    // Special positioning for Kit Kat - raise the image by 5% more
+    const imagePosition = item.name.toLowerCase().includes('kit kat') ? 'center 65%' : 'center';
+    
+    const imageContent = item.image 
+        ? `<img src="${item.image}" alt="${item.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: ${imagePosition}; border-radius: 10px;">`
+        : `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
+            <span style="font-size: 3rem; margin-bottom: 0.5rem;">${item.icon}</span>
+            <span style="font-size: 0.9rem; text-align: center; padding: 0 10px; opacity: 0.9;">${item.name}</span>
+           </div>`;
+    mousseItem.innerHTML = `
+        <div class="menu-item-image" style="background: linear-gradient(45deg, ${item.color}, ${item.color}dd);">
+            ${imageContent}
+        </div>
+        <div class="menu-item-content">
+            <h3 class="menu-item-title">${item.name}</h3>
+            <p class="menu-item-description">${item.description}</p>
+            <div class="menu-item-price">${item.price}</div>
+            <span class="menu-item-category">Mousse</span>
+        </div>
+    `;
+    mousseItem.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+        showIceCreamModal(item, mousseItem);
+    });
+    return mousseItem;
 }
 
 // Setup event listeners
